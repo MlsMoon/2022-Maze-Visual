@@ -47,7 +47,9 @@ public class MazeData
         maze[entranceX,entranceY] = Road;
         maze[exitX,exitY] = Road;
     }
-    
+
+    public object Visited { get; set; }
+
     public int GetN(){return N;}
     public int GetM(){return M;}
     public int GETEntranceX(){return entranceX;}

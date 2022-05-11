@@ -82,6 +82,9 @@ public partial class MazeVisual : MonoBehaviour
             case MazeType.GDfs1:
                 StartCoroutine(GenerateByDfs());
                 break;
+            case MazeType.GDfs2:
+                StartCoroutine(GenerateByNonRecurDfs());
+                break;
         }
     }
 }
