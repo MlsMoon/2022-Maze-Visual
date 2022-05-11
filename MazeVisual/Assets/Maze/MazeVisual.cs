@@ -27,6 +27,9 @@ public partial class MazeVisual : MonoBehaviour
         {0, -1},
     };
 
+    /// <summary>
+    /// 每帧执行
+    /// </summary>
     private void Update()
     {
         //Render Data
@@ -42,6 +45,10 @@ public partial class MazeVisual : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 初始化
+    /// </summary>
+    /// <param name="size"></param>
     private void Initial(int size)
     {
         _data = new MazeData(size, size);
@@ -84,6 +91,12 @@ public partial class MazeVisual : MonoBehaviour
                 break;
             case MazeType.GDfs2:
                 StartCoroutine(GenerateByNonRecurDfs());
+                break;
+            case MazeType.GBfs:
+                StartCoroutine(GenerateByBfs());
+                break;
+            case MazeType.GRandom:
+                StartCoroutine(GenerateRandom());
                 break;
         }
     }
