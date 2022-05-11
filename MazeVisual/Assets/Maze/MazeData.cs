@@ -5,9 +5,11 @@ public class MazeData
     public static char Road = ' ';
     public static char Wall = '#';
     
-    private int N, M;
-    public char[,] maze;
 
+    public char[,] maze;
+    public bool[,] visted;
+    
+    private int N, M;
     private int entranceX, entranceY;
     private int exitX, exitY;
     
@@ -20,12 +22,22 @@ public class MazeData
         this.M = M;
 
         maze = new char[N,M];
-        for(int i = 0 ; i < N ; i ++)
-        for(int j = 0 ; j < M ; j ++)
-            if(i%2 == 1 && j%2 == 1)
-                maze[i,j] = Road;
-            else
-                maze[i,j] = Wall;
+        visted = new bool[N, M];
+        
+        //默认迷宫状态
+        for (int i = 0; i < N; i++)
+        {
+            for (int j = 0; j < M; j++)
+            {
+                if(i%2 == 1 && j%2 == 1)
+                    maze[i,j] = Road;
+                else
+                    maze[i,j] = Wall;
+                
+                visted[i, j] = false;
+            }
+        }
+
 
         entranceX = 1;
         entranceY = 0;
@@ -42,4 +54,7 @@ public class MazeData
     public int GETEntranceY(){return entranceY;}
     public int GETExitX(){return exitX;}
     public int GETExitY(){return exitY;}
+    public bool InArea(int x, int y){
+        return x >= 0 && x < N && y >= 0 && y < M;
+    }
 }
