@@ -12,7 +12,7 @@ public partial class MazeVisual
             _data.GETEntranceX(),
             _data.GETEntranceY() + 1);
         queue.AddLast(first);
-        _data.visted[first.X, first.Y] = true;
+        _data.Visited[first.X, first.Y] = true;
 
         while (queue.Count != 0)
         {
@@ -24,11 +24,11 @@ public partial class MazeVisual
                 int newY = cur.Y + _direction[i,1]*2;
 
                 if(_data.InArea(newX, newY)
-                   && !_data.visted[newX,newY]
+                   && !_data.Visited[newX,newY]
                    && _data.maze[newX,newY] == MazeData.Road)
                 {
                     queue.AddLast(new MazePos(newX, newY));
-                    _data.visted[newX,newY] = true;
+                    _data.Visited[newX,newY] = true;
                     _data.maze[cur.X + _direction[i, 0], cur.Y + _direction[i, 1]] 
                         = MazeData.Road;
                     yield return new WaitForSeconds(0.1f);

@@ -6,17 +6,15 @@ using UnityEngine;
 public partial class MazeVisual
 {
     
-    private IEnumerator GenerateRandom()
+    private IEnumerator GenerateRandom(bool speedup = false)
     {
         IEnumerator GO(int x ,int y)
         {
-            Debug.Log("=================");
-            Debug.Log("进入："+x+","+y);
             if (!_data.InArea(x,y))
             {
                 throw new UnityException("不在范围内");
             }
-            _data.visted[x, y] = true;
+            _data.Visited[x, y] = true;
             //查看四个方向，如果是没访问过的就go一下
             List<int> randomNum = new List<int>()
             {
@@ -37,13 +35,18 @@ public partial class MazeVisual
                 int i = randomNum[t];
                 int newX = x + _direction[i, 0] * 2;
                 int newY = y + _direction[i, 1] * 2;
-                Debug.Log("==坐标："+x+","+y);
-                Debug.Log("=====探测坐标："+newX+","+newY);
-                if (_data.InArea(newX,newY) && !_data.visted[newX,newY])
+                if (_data.InArea(newX,newY) && !_data.Visited[newX,newY])
                 {
                     //这个位置没去过，把墙变成路
                     _data.maze[x + _direction[i, 0], y + _direction[i, 1]] = MazeData.Road;
-                    yield return new WaitForSeconds(0.1f);
+                    if (!speedup)
+                    {
+                        yield return new WaitForSeconds(0.1f);
+                    }
+                    else
+                    {
+                        yield return new WaitForSeconds(0.0025f);
+                    }
                     yield return StartCoroutine(GO(newX, newY));
                 }
             }

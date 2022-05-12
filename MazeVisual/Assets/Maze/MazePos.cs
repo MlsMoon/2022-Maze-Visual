@@ -4,6 +4,7 @@
     {
         public int X;
         public int Y;
+        public MazePos PrePos;
 
         public MazePos(int a, int b)
         {
