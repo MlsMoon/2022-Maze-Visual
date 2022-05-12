@@ -5,4 +5,5 @@
     GBfs = 2,
     GRandom = 3,
     SDfs = 4,
+    SDfs2 = 5,
 }

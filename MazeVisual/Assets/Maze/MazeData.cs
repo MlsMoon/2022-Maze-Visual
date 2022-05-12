@@ -9,6 +9,7 @@ public class MazeData
     public char[,] maze;
     public bool[,] Visited;
     public bool[,] path;
+    public bool[,] TruePath;
     
     private int N, M;
     private int entranceX, entranceY;
@@ -25,6 +26,7 @@ public class MazeData
         maze = new char[N,M];
         Visited = new bool[N, M];
         path = new bool[N, M];
+        TruePath = new bool[N, M];
 
         //默认迷宫状态
         for (int i = 0; i < N; i++)
@@ -38,6 +40,7 @@ public class MazeData
                 
                 Visited[i, j] = false;
                 path[i, j] = false;
+                TruePath[i,j] = false;
             }
         }
 

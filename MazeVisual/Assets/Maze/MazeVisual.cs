@@ -14,11 +14,12 @@ public partial class MazeVisual : MonoBehaviour
         1600,
         1600
     };
-    private readonly Color[] _colors = new Color[3]
+    private readonly Color[] _colors = new Color[4]
     {
         new Color(1,1,1,1),
         new Color(0,0.5f,1,1),
-        new Color(0.9f,0.9f,0,1)
+        new Color(0.9f,0.9f,0,1),
+        new Color(0.8f,0.3f,0.1f,1)
     };
     private readonly int[,] _direction = new int[4,2]
     {
@@ -44,6 +45,8 @@ public partial class MazeVisual : MonoBehaviour
                     _dataVisualObjects[i, j].color = _colors[0];
                 if (_data.path[i, j])
                     _dataVisualObjects[i, j].color = _colors[2];
+                if (_data.TruePath[i,j])
+                    _dataVisualObjects[i, j].color = _colors[3];
             }
         }
     }
@@ -103,6 +106,9 @@ public partial class MazeVisual : MonoBehaviour
                 break;
             case MazeType.SDfs:
                 StartCoroutine(SolveDfs());
+                break;
+            case MazeType.SDfs2:
+                StartCoroutine(SolveDfsNonRecursive());
                 break;
         }
     }
