@@ -110,6 +110,9 @@ public partial class MazeVisual : MonoBehaviour
             case MazeType.SDfs2:
                 StartCoroutine(SolveDfsNonRecursive());
                 break;
+            case MazeType.SBfs:
+                StartCoroutine(SolveBfs());
+                break;
         }
     }
 
